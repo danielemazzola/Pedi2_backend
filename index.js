@@ -47,7 +47,7 @@ app.use("/api/comensales", roomMesas);
 app.use("/api/pedidos", pedidosRest)
 app.use("/api/metodosPago", metodosPago)
 
-const PORT = Process.env.port || 4000;
+const PORT = process.env.port || 4000;
 /****** */
 
 const servidor = app.listen(PORT, () => {
