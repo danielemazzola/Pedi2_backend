@@ -13,7 +13,7 @@ const router = express.Router();
 
 
 router
-    .route("/")
+    .route("./")
     .post(checkAut, nuevoProducto) //Crear
     
 router
