@@ -13,7 +13,7 @@ import {
 const router = express.Router();
 
 //coleccion de mesas
-router.get("./", checkAut, mostrarVentas)
+router.get("/", checkAut, mostrarVentas)
 router.get("/ventas", checkAut, pedidoPagado)
 router.get("/entregado/:id", checkAut, entregado)
 router.get("/resuelto/:id", checkAut, resuelto)

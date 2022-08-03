@@ -28,9 +28,8 @@ const MesaComensalesSchema = mongoose.Schema(
         ref: "Usuario",
       },
       mesaId: {
-        type: Object,
-        trim:true,
-        require: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Mesas",
       },
       fecha:  {
         type:Date,
