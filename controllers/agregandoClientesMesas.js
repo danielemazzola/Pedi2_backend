@@ -48,7 +48,7 @@ const eliminarComensal = async (req, res) => {
   try {
     await comensal.delete();
     modificandoMesa.nMesas = modificandoMesa.nMesas - 1;
-    if(modificandoMesa.nMesas <= 0) {
+    if(modificandoMesa.nMesas < 1) {
       modificandoMesa.nMes === 0;
       modificandoMesa.estado = false;
       await modificandoMesa.save();
