@@ -26,7 +26,7 @@ const crearSalaComensales = async (req, res) => {
 
     res.json({ insertandoUsuario });
   } else {
-    const error = new Error("Mesa no existe. Eror 404");
+    const error = new Error("Mesa no existe. Error 404");
     return res.json({ msg: error.message });
   }
 };
@@ -39,21 +39,17 @@ const mostrarComensales = async (req, res) => {
 };
 
 const eliminarComensal = async (req, res) => {
-  const { id } = req.params;
-  const usuario = await MesaComensales.find().where("id").equals(id);
-  const comensal = await MesaComensales.findById(usuario);
-  const mesaComensal = await Mesas.find().where("nMesa").equals(comensal.mesa);
-  const modificandoMesa = await Mesas.findById(mesaComensal);
-
+  const usuario = await MesaComensales.findById(req.params.id);
+  const mesaComensal = await Mesas.findById(usuario.mesaId)
   try {
-    await comensal.delete();
-    modificandoMesa.nMesas = modificandoMesa.nMesas - 1;
-    if(modificandoMesa.nMesas < 1) {
-      modificandoMesa.nMes === 0;
-      modificandoMesa.estado = false;
-      await modificandoMesa.save();
+    await usuario.delete();
+    mesaComensal.nMesas = mesaComensal.nMesas - 1;
+    if(mesaComensal.nMesas < 1) {
+      mesaComensal.nMesas == 0;
+      mesaComensal.estado = false;
+      await mesaComensal.save();
     }else {
-      await modificandoMesa.save();
+      await mesaComensal.save();
     }
 
     res.json({ msg: "Comensal eliminado" });
