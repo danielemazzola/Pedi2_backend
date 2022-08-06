@@ -12,7 +12,7 @@ import {
 //coleccion de mesas
 router.get('/', checkAut, obtenerMesas)
 router.post('/crear-mesa', checkAut, crearMesa)
-router.put('/modificarestado/:id', checkAut, estadoReset)
+router.delete('/modificarestado/:id', checkAut, estadoReset)
 
 
 

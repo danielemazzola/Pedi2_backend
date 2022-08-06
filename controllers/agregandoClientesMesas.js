@@ -40,20 +40,26 @@ const mostrarComensales = async (req, res) => {
 
 const eliminarComensal = async (req, res) => {
   const usuario = await MesaComensales.findById(req.params.id);
-  const mesaComensal = await Mesas.findById(usuario.mesaId)
-  try {
+  if(usuario){
+    const mesaComensal = await Mesas.findById(usuario.mesaId)
+  
     await usuario.delete();
     mesaComensal.nMesas = mesaComensal.nMesas - 1;
     if(mesaComensal.nMesas < 1) {
-      mesaComensal.nMesas == 0;
+      mesaComensal.nMesas = 0;
       mesaComensal.estado = false;
       await mesaComensal.save();
     }else {
       await mesaComensal.save();
+      res.json({ msg: "Comensal eliminado" });
     }
-
+  }else{
+    
     res.json({ msg: "Comensal eliminado" });
-  } catch (e) {}
+  }
+  
+
+  
 };
 
 export { crearSalaComensales, mostrarComensales, eliminarComensal };

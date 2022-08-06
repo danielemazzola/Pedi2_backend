@@ -26,17 +26,15 @@ const crearMesa = async (req, res) => {
 
 const estadoReset = async (req, res) => {
   const mesa = await Mesas.findById(req.params.id)
-  const comensales = await MesaComensales.find().where("mesaId._id").equals(mesa._id)
+  const comensales = await MesaComensales.find().where("mesaId").equals(mesa)
+  const ids = comensales.map((comensales) => comensales._id)
+  const mesas = await MesaComensales.find()
+  const mesasALimpiar = mesas.map(mesas => mesas.mesaId = ids && mesas.delete())
+  mesa.estado = false;
+  mesa.nMesas = 0
+  await mesa.save()
+  res.json({mesa})
   
-  if(comensales.length > 0){
-    const error = new Error("Actualmente hay comensales");
-    return res.json({ msg: error.message });
-    
-  }else{
-    mesa.estado = false;
-    await mesa.save()
-    res.json({mesa})
-  }
 }
 
 
