@@ -10,6 +10,6 @@ const router = express.Router();
 //coleccion de mesas
 router.get("/:id", mostrarComensales)
 router.post("/agregarComensales", crearSalaComensales);
-router.delete("/eliminarComensal/:id", eliminarComensal)
+router.put("/eliminarComensal/:id", eliminarComensal)
 
 export default router;

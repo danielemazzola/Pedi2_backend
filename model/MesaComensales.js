@@ -20,21 +20,27 @@ const MesaComensalesSchema = mongoose.Schema(
           trim:true
       },
       mesa:{
-          type:Number,
-          trim:true
+        type:Number,
+        trim:true,
+        default: null,
+
       },
       restauranteId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Usuario",
+        type: String,
+        default: null
       },
       mesaId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Mesas",
+        type: String,
+        default: null
       },
       fecha:  {
         type:Date,
         default: Date.now(),
       },
+      estado: {
+        type:Boolean,
+        default: false
+      }
     },
     {
       timestamps: true,
